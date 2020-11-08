@@ -1,14 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
 
 
 public class PlayerController : MonoBehaviour
 {
 
-
-    [Header("Player Input")]
-    [SerializeField] PlayerInput playerControl;
-    
     [Header("Movement")]
     [SerializeField] float playerSpeed = 200;
     [SerializeField] float playerJumpForce = 200;
@@ -33,24 +28,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerRb.velocity = new Vector2(movement.x * playerSpeed, playerRb.velocity.y);
-
-        Debug.Log($"{isGrounded}");
+        Move();
     }
 
-
-    public void OnMove(InputValue valor)
+    private void Move()
     {
-        Vector2 dir = valor.Get<Vector2>();
-        movement = new Vector2(dir.x, 0);
-    }
-
-    public void OnJump(InputValue valor)
-    {
-        float dir =  valor.Get<float>();
-
-        if(isGrounded)
-            playerRb.AddForce(Vector2.up * playerJumpForce);
+        
     }
 
     private void OnDrawGizmos()
